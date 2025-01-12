@@ -12,13 +12,13 @@ let koalasScoresBonus1 = [109, 95, 123];
 let dolphinsScoresBonus2 = [97, 112, 101];
 let koalasScoresBonus2 = [109, 95, 106];
 
-// Function to calculate the average score
+
 function calculateAverage(scores) {
   let totalScore = scores.reduce((acc, score) => acc + score, 0);
   return totalScore / scores.length;
 }
 
-// Function to determine the winner
+
 function determineWinner(dolphinsScores, koalasScores) {
   const dolphinsAvg = calculateAverage(dolphinsScores);
   const koalasAvg = calculateAverage(koalasScores);

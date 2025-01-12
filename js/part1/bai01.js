@@ -32,7 +32,6 @@ console.log("Test Data 2:");
 console.log(`Mark's BMI: ${markBMI2.toFixed(2)}, John's BMI: ${johnBMI2.toFixed(2)}`);
 console.log(`Mark has a higher BMI than John: ${markHigherBMI2}`);
 
-
 console.log("============= Coding Challenge #2 =============")
 // Check who has the higher BMI for Test Data 1
 if (markBMI1 > johnBMI1) {
