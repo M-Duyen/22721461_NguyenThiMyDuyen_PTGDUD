@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        display: grid;
+        grid-template-areas:
+            "header header"
+            "menu content"
+            "footer footer";
+        grid-template-columns: 1fr 3fr;
+        gap: 1px;
+        padding: 5px;
+    }
+
+    .container>div {
+        /* background-color: rgba(239, 239, 239, 0.8); */
+        padding: 10px;
+    }
+
+    .container>div.header {
+        grid-area: header;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        
+
+    }
+
+    .container>div.menu {
+        grid-area: menu;
+    }
+
+    .container>div.content {
+        grid-area: content;
+        justify-items: center;
+    }
+
+    .container>div.footer {
+        grid-area: footer;
+        background-color: rgb(0, 18, 12);
+        height: 350px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header_menu {
+        display: flex;
+        justify-content: space-around;
+        width: 600px;
+        padding-top: 20px;
+
+    }
+
+    .avatar {
+        display: flex;
+        justify-content: space-around;
+        width: 200px;
+    }
+
+    .avatar_left {
+
+        display: flex;
+        justify-content: space-around;
+        width: 200px;
+        background-color: rgba(255, 215, 221, 0.858);
+        padding-top: 5px;
+        justify-content: center;
+        border-radius: 10px;
+        height: 40px;
+        color: rgb(255, 144, 161);
+    }
+
+    .content_button {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+    }
+
+    .content_button button {
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        margin: 10px;
+
+    }
+
+    .footer_left {
+        margin-left: 50px;
+    }
+
+    .footer_right {
+        display: flex;
+        justify-content: space-around;
+        width: 60%;
+
+    }
+
+    ul li {
+        list-style-type: none;
+        margin-top: 10px;
+        margin-left: -40px;
+        line-height: 30px;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+        margin-top: 30px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo" style="display: flex;">
+                <div>
+                    <img src="../assets/avatar_small.png" alt="logo" style="width: 150px; height: 50px;">
+                </div>
+
+                <div style="display: inline-block; position: relative;">
+                    <input type="text" placeholder="cakescascsa"
+                        style="width: 300px; height: 30px; border-radius: 10px; border: 1px solid rgb(255, 255, 255); margin-left: 10px; margin-top: 10px; background-color: rgb(234, 234, 235); padding-left: 30px;" />
+                    <img src="../assets/search (2).png" alt="search"
+                        style="width: 20px; height: 20px; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;" />
+
+
+                </div>
+            </div>
+            <div class="header_menu">
+
+                <div>
+                    <a href="#">What to cook</a>
+                </div>
+                <div>
+                    <a href="#">Recipes</a>
+                </div>
+                <div>
+                    <a href="#">Ingredients</a>
+                </div>
+                <div>
+                    <a href="#">Occasions</a>
+                </div>
+
+                <div>
+                    <a href="#">About Us</a>
+                </div>
+
+
+            </div>
+            <div class="avatar">
+                <div class="avatar_left">
+                    <img src="../assets/archive_check.png" alt="avatar" style="width: 30px; height: 30px;">
+                    <p style="margin-top: 8px; margin-left: 8px;">Your Recipe Box</p>
+
+                </div>
+                <div style="margin-left: 10px; margin-top: 12px;">
+                    <img src="../assets/avatar.png" alt="avatar" style="width: 30px; height: 30px;">
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <img src="../assets/image1.png" alt="">
+
+        </div>
+
+        <div class="content">
+            <h1 style="margin-top: 20px; ">Sorry, no results were found for "cakescascsa"</h1>
+            <img src="../assets/image.png" alt="">
+            <p style="font-size: 20px;">We have all your independence Day sweets covered</p>
+
+            <div class="content_button">
+                <button type="button"
+                    style="background-color: rgba(255, 215, 221, 0.6); color:rgb(255, 144, 161);">Sweet Cake</button>
+                <button type="button"
+                    style="background-color: rgba(227, 217, 253, 0.39); color: rgba(96, 33, 255, 0.522);">Black
+                    Cake</button>
+                <button type="button"
+                    style="background-color: rgba(255, 215, 221, 0.6); color:rgb(255, 144, 161);">Pozole Verde</button>
+                <button type="button"
+                    style="background-color: rgba(226, 243, 253, 0.6); color:rgb(49, 189, 199);">Healthy food</button>
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+            <div class="footer_left">
+                <h2>About Us</h2>
+                <p style="font-size: 22px;">Welcome to our website, a winderful place to explore and learn how to cook
+                    like a pro.</p>
+                <div style="display: flex;">
+                    <input type="text" placeholder="Enter your email"
+                        style="width: 70%; height: 40px; border-radius: 10px; border: 1px solid rgb(255, 255, 255); margin-top: 10px; background-color: rgb(234, 234, 235); padding-left: 10px; font-size: larger;" />
+
+                    <button type="button"
+                        style="background-color: rgb(255, 92, 130); color:white; width: 100px; margin-left: 10px; border-radius: 10px; margin-top: 10px;">Send</button>
+                </div>
+                <div
+                    style=" width: 100%; height: 20%; margin-top: 100px; display: flex; justify-content: space-around;">
+                    <img src="../assets/avatar_small.png" alt="" style="width: 30%;" height="55%">
+                    <p>2023 Chefify Company</p>
+                    <p>Terms of Servicel Privacy Policy</p>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="footer_right">
+                <div>
+                    <h2>Learn more</h2>
+                    <ul>
+                        <li>Ours Cooks</li>
+                        <li>See Our Features</li>
+                        <li>FAQ</li>
+                    </ul>
+
+                    <h2 style="margin-top: 50px;">Shop</h2>
+                    <ul>
+                        <li>Gift Subcription</li>
+                        <li>Send Us Feedback</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Recipes</h2>
+                    <ul>
+                        <li>What to Cook This Week</li>
+                        <li>Pasta</li>
+                        <li>Dinner</li>
+                        <li>Healthy</li>
+                        <li>Vegetarian</li>
+                        <li>Vegan</li>
+                        <li>Chiristmas</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
