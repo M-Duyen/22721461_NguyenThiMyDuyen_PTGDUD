@@ -81,11 +81,6 @@ export default function CalInves() {
 
             )}
 
-
-
-
-
-
         </div>
     );
 }
