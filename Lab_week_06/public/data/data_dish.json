@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "name": "Phở Bò",
+    "price": "50.000đ",
+    "image": "/src/assets/pho_bo.png",
+    "description": "Phở bò thơm ngon với nước dùng đậm đà, thịt bò mềm, bánh phở dai."
+  },
+  {
+    "id": 2,
+    "name": "Bún Chả",
+    "price": "45.000đ",
+    "image": "/src/assets/bun_cha.png",
+    "description": "Bún chả Hà Nội chuẩn vị, thịt nướng thơm ngon, ăn kèm nước chấm đặc biệt."
+  },
+  {
+    "id": 3,
+    "name": "Gỏi Cuốn",
+    "price": "30.000đ",
+    "image": "/src/assets/goi_cuon.png",
+    "description": "Gỏi cuốn tươi mát với tôm, thịt và rau xanh, chấm nước mắm chua ngọt."
+  },
+  {
+    "id": 4,
+    "name": "Bánh Mì Thịt Nướng",
+    "price": "35.000đ",
+    "image": "/src/assets/banh_mi.png",
+    "description": "Bánh mì giòn rụm với thịt nướng đậm đà, ăn kèm dưa leo và đồ chua."
+  },
+  {
+    "id": 5,
+    "name": "Chè Ba Màu",
+    "price": "20.000đ",
+    "image": "/src/assets/che_ba_mau.png",
+    "description": "Chè ba màu ngọt mát, kết hợp đậu đỏ, đậu xanh và nước cốt dừa."
+  },
+  {
+    "id": 6,
+    "name": "Cà Phê Sữa Đá",
+    "price": "25.000đ",
+    "image": "/src/assets/ca_phe_sua_da.png",
+    "description": "Cà phê sữa đá đậm đà, thơm ngon, giúp tỉnh táo suốt cả ngày."
+  },
+  {
+    "id": 7,
+    "name": "Lẩu Thái",
+    "price": "200.000đ",
+    "image": "/src/assets/lau_thai.png",
+    "description": "Lẩu Thái chua cay, ăn kèm hải sản tươi ngon và rau sống."
+  },
+  {
+    "id": 8,
+    "name": "Gà Rán",
+    "price": "70.000đ",
+    "image": "/src/assets/ga_ran.png",
+    "description": "Gà rán giòn rụm, sốt cay đậm đà, thích hợp cho bữa ăn nhanh."
+  },
+  {
+    "id": 9,
+    "name": "Bánh Xèo",
+    "price": "50.000đ",
+    "image": "/src/assets/banh_xeo.png",
+    "description": "Bánh xèo giòn tan, nhân tôm thịt, ăn kèm rau sống và nước mắm chua ngọt."
+  },
+  {
+    "id": 10,
+    "name": "Salad Rau Củ",
+    "image": "/src/assets/salad.jpg",
+    "price": "35,000 VND",
+    "description": "Salad rau củ tươi mát với sốt chanh dây."
+  },
+  {
+    "id": 11,
+    "name": "Cơm Tấm Sườn",
+    "image": "/src/assets/com_tam_suon.jpg",
+    "price": "55,000 VND",
+    "description": "Cơm tấm sườn bì chả, ăn kèm nước mắm chua ngọt."
+  },
+  {
+    "id": 12,
+    "name": "Hủ Tiếu Nam Vang",
+    "image": "/src/assets/hu_tieu_nam_vang.jpg",
+    "price": "45,000 VND",
+    "description": "Hủ tiếu Nam Vang đầy đủ tôm, thịt, trứng."
+  }
+  
+]
