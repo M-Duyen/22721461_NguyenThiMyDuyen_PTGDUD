@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import ModelUpdate from './ModelUpdate';
+import ModalAddCustomer from './ModelAddCustomer';
 
 function Dashboard() {
     const [array, setArray] = useState([]);
@@ -6,6 +8,9 @@ function Dashboard() {
     const [page, setPage] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     useEffect(() => {
         fetch('https://67f6518142d6c71cca617d6a.mockapi.io/customer')
@@ -29,70 +34,92 @@ function Dashboard() {
         setItemArray(array.slice(startIndex, endIndex));
     };
 
+    const handleEdit = (item) => {
+        setSelectedItem(item);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleSave = async (updatedItem) => {
+        try {
+            const response = await fetch(
+                `https://67f6518142d6c71cca617d6a.mockapi.io/customer/${updatedItem.id}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: updatedItem.name,
+                        avatar: updatedItem.avatar,
+                        company: updatedItem.company,
+                    }),
+                },
+            );
+
+            if (response.ok) {
+                const updated = await response.json();
+
+                // Cập nhật danh sách tổng thể
+                const newArray = array.map((item) =>
+                    item.id === updated.id ? updated : item,
+                );
+
+                setArray(newArray);
+
+                // Cập nhật lại phần hiển thị theo trang hiện tại
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                setItemArray(newArray.slice(startIndex, endIndex));
+
+                // Đóng modal
+                setIsModalOpen(false);
+            } else {
+                console.error('Lỗi khi cập nhật:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Lỗi PUT API:', error);
+        }
+    };
+    const handleAddCustomer = async (newCustomer) => {
+        try {
+            const response = await fetch(
+                'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newCustomer),
+                },
+            );
+
+            if (response.ok) {
+                const added = await response.json();
+
+                const newArray = [...array, added];
+                setArray(newArray);
+
+                // Cập nhật lại dữ liệu hiển thị trong trang hiện tại
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                setItemArray(newArray.slice(startIndex, endIndex));
+
+                setIsAddModalOpen(false); // đóng modal sau khi thêm
+            } else {
+                console.error('Lỗi khi thêm khách hàng:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Lỗi POST API:', error);
+        }
+    };
+
     return (
         <>
-            <div className="grid grid-cols-10 container mx-auto shadow-2xl">
-                <div className="grid col-span-2 p-5  border-r border-r-gray-200">
-                    <img
-                        src="https://res.cloudinary.com/duongofji/image/upload/v1744188613/Image_1858_frjwpk.png"
-                        alt="logo"
-                        className=" object-contain mb-8"
-                    />
-                    <button className="flex text-white  bg-pink-500 p-3 rounded-lg">
-                        <img
-                            src="https://res.cloudinary.com/duongofji/image/upload/v1744193358/Squares1_p1bgkp.jpg"
-                            alt=""
-                        />
-                        <p className="ml-3">Dashboard</p>
-                    </button>
-                    <button className="flex text-gray-500 p-3 rounded-lg mt-2 hover:bg-pink-500 hover:text-white transition duration-300">
-                        <img
-                            src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/Folder_x3cfac.png"
-                            alt=""
-                        />
-                        <p className="ml-3">Projects</p>
-                    </button>
-                    <button className="flex text-gray-500 p-3 rounded-lg mt-2 hover:bg-pink-500 hover:text-white transition duration-300 ">
-                        <img
-                            src="https://res.cloudinary.com/duongofji/image/upload/v1744188613/Groups_fwim6e.png"
-                            alt=""
-                        />
-                        <p className="ml-3">Teams</p>
-                    </button>
-                    <button className="flex text-gray-500  p-3 rounded-lg mt-2 hover:bg-pink-500 hover:text-white transition duration-300">
-                        <img
-                            src="https://res.cloudinary.com/duongofji/image/upload/v1744188612/Pie_chart_glsklk.png"
-                            alt=""
-                        />
-                        <p className="ml-3">Analytics</p>
-                    </button>
-                    <button className="flex text-gray-500  p-3 rounded-lg mt-2 hover:bg-pink-500 hover:text-white transition duration-300">
-                        <img
-                            src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/Chat_jnllfs.png"
-                            alt=""
-                        />
-                        <p className="ml-3">Message</p>
-                    </button>
-                    <button className="flex text-gray-500 p-3 rounded-lg mt-2 hover:bg-pink-500 hover:text-white transition duration-300">
-                        <img
-                            src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/Code_f14bka.png"
-                            alt=""
-                        />
-                        <p className="ml-3">Integrations</p>
-                    </button>
-                    <div className="justify-items-center bg-sky-100 mt-25 p-3 pt-6 rounded-lg">
-                        <img
-                            src="https://res.cloudinary.com/duongofji/image/upload/v1744188612/Group_wrjk6h.png"
-                            alt=""
-                        />
-                        <p className="font-bold text-xl mt-2">
-                            V2.0 is available
-                        </p>
-                        <button className="text-blue-500 border w-60 rounded-lg h-10 mt-3 hover:bg-blue-500 hover:text-white transition duration-300">
-                            Try now
-                        </button>
-                    </div>
-                </div>
+            <div className="grid grid-cols-8 container mx-auto ">
                 <div className="self-start grid col-span-8">
                     <div className="grid grid-cols-2 h-20 pt-5.5 border-b border-b-gray-200">
                         <p className=" grid col-span-1 text-2xl font-bold text-pink-500 pl-7">
@@ -239,7 +266,10 @@ function Dashboard() {
                                 </p>
                             </div>
                             <div className="flex justify-end">
-                                <button className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2">
+                                <button
+                                    className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2"
+                                    onClick={() => setIsAddModalOpen(true)}
+                                >
                                     <img
                                         src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/Download_qoyc0m.png"
                                         alt="import"
@@ -247,6 +277,12 @@ function Dashboard() {
                                     />
                                     <p className="ml-1">Import</p>
                                 </button>
+                                <ModalAddCustomer
+                                    isOpen={isAddModalOpen}
+                                    onClose={() => setIsAddModalOpen(false)}
+                                    onAdd={handleAddCustomer}
+                                />
+
                                 <button className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2 ml-3">
                                     <img
                                         src="https://res.cloudinary.com/duongofji/image/upload/v1744188612/Move_up_deiiqh.png"
@@ -327,11 +363,18 @@ function Dashboard() {
                                                     </span>
                                                 </td>
                                                 <td className="p-3 text-right">
-                                                    <img
-                                                        src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/create_qj44ru.png"
-                                                        alt="Action"
-                                                        className="h-5 inline"
-                                                    />
+                                                    <button
+                                                        className="text-pink-500 hover:underline"
+                                                        onClick={() =>
+                                                            handleEdit(item)
+                                                        }
+                                                    >
+                                                        <img
+                                                            src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/create_qj44ru.png"
+                                                            alt="Action"
+                                                            className="h-5 inline"
+                                                        />
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))
@@ -347,6 +390,13 @@ function Dashboard() {
                                     )}
                                 </tbody>
                             </table>
+                            {/* Gọi Modal */}
+                            <ModelUpdate
+                                isOpen={isModalOpen}
+                                onClose={handleCloseModal}
+                                onSave={handleSave}
+                                item={selectedItem}
+                            />
                         </div>
                         <div className="grid grid-cols-2 mt-5">
                             <p className="text-gray-500">
