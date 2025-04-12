@@ -8,6 +8,7 @@ import Integrations from './pages/Integrations';
 
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import Sidebar from './component/SideBar';
+import Header from './component/Header';
 
 // Component wrapper vì useLocation không dùng trực tiếp trong App khi dùng Router ngoài
 function AppContent() {
@@ -17,7 +18,10 @@ function AppContent() {
                 <Sidebar />
             </div>
 
-            <div className='self-start grid col-span-8'>
+            <div className="self-start grid col-span-8">
+                <div className="grid grid-cols-2 h-20 pt-5.5 border-b border-b-gray-200">
+                    <Header />
+                </div>
                 <Routes>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/projects" element={<Projects />} />

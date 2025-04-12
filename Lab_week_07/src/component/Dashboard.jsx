@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import ModelUpdate from './ModelUpdate';
 import ModalAddCustomer from './ModelAddCustomer';
+import axios from 'axios';
+import Header from './Header';
 
 function Dashboard() {
     const [array, setArray] = useState([]);
@@ -11,6 +13,57 @@ function Dashboard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+    const [totalOrderValue, setTotalOrderValue] = useState(0);
+    const [profit, setProfit] = useState(0);
+    const [newCustomer, setNewCustomer] = useState(0);
+
+    const fetchAndCalculateTotal = async () => {
+        try {
+            const res = await axios.get(
+                'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
+            );
+
+            // Chuyển giá trị orderValue sang số và tính tổng
+            const total = res.data.reduce(
+                (acc, item) => acc + Number(item.orderValue),
+                0,
+            );
+
+            // Gán vào state
+            setTotalOrderValue(total);
+        } catch (err) {
+            console.error('Lỗi khi lấy dữ liệu:', err);
+        }
+    };
+
+   useEffect(() => {
+       if (totalOrderValue !== null) {
+           const calculatedProfit = Math.floor(totalOrderValue * 0.35);
+           setProfit(calculatedProfit);;
+       }
+   }, [totalOrderValue]);
+
+ 
+  const fetchNewCustomer = async () => {
+    try {
+      const res = await axios.get(
+        'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
+      );
+      const newCustomerCount = res.data.filter((item) => item.status === 'New').length;
+      
+      setNewCustomer(newCustomerCount)
+    }catch (err) {
+      console.error('Lỗi khi lấy dữ liệu:', err);
+    }
+  }
+
+
+
+    useEffect(() => {
+      fetchAndCalculateTotal();
+      fetchNewCustomer();
+    }, []);
 
     useEffect(() => {
         fetch('https://67f6518142d6c71cca617d6a.mockapi.io/customer')
@@ -121,40 +174,7 @@ function Dashboard() {
         <>
             <div className="grid grid-cols-8 container mx-auto ">
                 <div className="self-start grid col-span-8">
-                    <div className="grid grid-cols-2 h-20 pt-5.5 border-b border-b-gray-200">
-                        <p className=" grid col-span-1 text-2xl font-bold text-pink-500 pl-7">
-                            Dashboard
-                        </p>
-                        <div className="flex col-span-1  justify-end pr-8">
-                            <div className=" flex bg-gray-200/50 justify-items-center h-9 pl-3 p-2 rounded-sm mr-3">
-                                <img
-                                    src="https://res.cloudinary.com/duongofji/image/upload/v1744188612/Search_feka39.png"
-                                    alt="search"
-                                    className="h-5 "
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Search..."
-                                    className="ml-2 w-80"
-                                />
-                            </div>
-                            <img
-                                src="https://res.cloudinary.com/duongofji/image/upload/v1744188613/Bell_1_zulk4y.png"
-                                alt="thongbao"
-                                className="h-7 mr-3 mt-1"
-                            />
-                            <img
-                                src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/Question_1_bidef5.png"
-                                alt=""
-                                className="h-7 mr-3 mt-1"
-                            />
-                            <img
-                                src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/Avatar_313_hn5lo5.png"
-                                alt=""
-                                className="h-10"
-                            />
-                        </div>
-                    </div>
+                    
                     {/* overview & detailed report */}
                     <div className="p-6 mt-2">
                         <div className="flex">
@@ -173,7 +193,7 @@ function Dashboard() {
                                             Turnover
                                         </p>
                                         <p className="text-4xl mt-2 font-bold">
-                                            $92,405
+                                            ${totalOrderValue.toLocaleString()}
                                         </p>
                                         <div className="flex mt-5">
                                             <p className="text-green-600 font-bold pr-1">
@@ -202,7 +222,7 @@ function Dashboard() {
                                             Profit
                                         </p>
                                         <p className="text-4xl mt-2 font-bold">
-                                            $32,218
+                                            ${profit.toLocaleString()}
                                         </p>
                                         <div className="flex mt-5">
                                             <p className="text-green-600 font-bold pr-1">
@@ -231,7 +251,7 @@ function Dashboard() {
                                             New customer
                                         </p>
                                         <p className="text-4xl mt-2 font-bold">
-                                            298
+                                            {newCustomer.toLocaleString()}
                                         </p>
                                         <div className="flex mt-5">
                                             <p className="text-green-600 font-bold pr-1">
