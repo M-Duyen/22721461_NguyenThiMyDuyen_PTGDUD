@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from './Header';
 import ModelUpdate from './ModelUpdate';
+import ModalAddCustomer from './ModalAddCustomer';
 
 function Dashboard() {
     const [array, setArray] = useState([]);
@@ -11,7 +12,7 @@ function Dashboard() {
     const itemsPerPage = 6;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-    // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     const [totalOrderValue, setTotalOrderValue] = useState(0);
     const [profit, setProfit] = useState(0);
@@ -135,38 +136,38 @@ function Dashboard() {
             console.error('Lỗi PUT API:', error);
         }
     };
-    // const handleAddCustomer = async (newCustomer) => {
-    //     try {
-    //         const response = await fetch(
-    //             'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
-    //             {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //                 body: JSON.stringify(newCustomer),
-    //             },
-    //         );
+    const handleAddCustomer = async (newCustomer) => {
+        try {
+            const response = await fetch(
+                'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newCustomer),
+                },
+            );
 
-    //         if (response.ok) {
-    //             const added = await response.json();
+            if (response.ok) {
+                const added = await response.json();
 
-    //             const newArray = [...array, added];
-    //             setArray(newArray);
+                const newArray = [...array, added];
+                setArray(newArray);
 
-    //             // Cập nhật lại dữ liệu hiển thị trong trang hiện tại
-    //             const startIndex = (currentPage - 1) * itemsPerPage;
-    //             const endIndex = startIndex + itemsPerPage;
-    //             setItemArray(newArray.slice(startIndex, endIndex));
+                // Cập nhật lại dữ liệu hiển thị trong trang hiện tại
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                setItemArray(newArray.slice(startIndex, endIndex));
 
-    //             setIsAddModalOpen(false); // đóng modal sau khi thêm
-    //         } else {
-    //             console.error('Lỗi khi thêm khách hàng:', response.statusText);
-    //         }
-    //     } catch (error) {
-    //         console.error('Lỗi POST API:', error);
-    //     }
-    // };
+                setIsAddModalOpen(false); // đóng modal sau khi thêm
+            } else {
+                console.error('Lỗi khi thêm khách hàng:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Lỗi POST API:', error);
+        }
+    };
 
     return (
         <>
@@ -286,7 +287,7 @@ function Dashboard() {
                             <div className="flex justify-end">
                                 <button
                                     className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2"
-                                    // onClick={() => setIsAddModalOpen(true)}
+                                    onClick={() => setIsAddModalOpen(true)}
                                 >
                                     <img
                                         src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/Download_qoyc0m.png"
@@ -295,11 +296,11 @@ function Dashboard() {
                                     />
                                     <p className="ml-1">Import</p>
                                 </button>
-                                {/* <ModalAddCustomer
+                                <ModalAddCustomer
                                     isOpen={isAddModalOpen}
                                     onClose={() => setIsAddModalOpen(false)}
-                                    // onAdd={handleAddCustomer}
-                                /> */}
+                                    onAdd={handleAddCustomer}
+                                />
 
                                 <button className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2 ml-3">
                                     <img
