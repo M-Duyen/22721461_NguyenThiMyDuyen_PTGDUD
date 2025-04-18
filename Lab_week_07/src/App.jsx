@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import Sidebar from './component/Sidebar';
 import Header from './component/Header';
+import Dashboard from './component/Dashboard';
 
 function AppContent() {
     return (
@@ -15,6 +16,7 @@ function AppContent() {
                 <div className="grid grid-cols-2 h-20 pt-5.5 border-b border-b-gray-200">
                     <Header />
                 </div>
+                <Dashboard />
             </div>
         </div>
     );

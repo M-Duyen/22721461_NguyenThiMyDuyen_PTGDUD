@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
-import ModelUpdate from './ModelUpdate';
-import ModalAddCustomer from './ModelAddCustomer';
 import axios from 'axios';
 import Header from './Header';
 
 function Dashboard() {
-    const [array, setArray] = useState([]);
-    const [itemArray, setItemArray] = useState([]);
-    const [page, setPage] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    // const [array, setArray] = useState([]);
+    // const [itemArray, setItemArray] = useState([]);
+    // const [page, setPage] = useState([]);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const itemsPerPage = 6;
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [selectedItem, setSelectedItem] = useState(null);
+    // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     const [totalOrderValue, setTotalOrderValue] = useState(0);
     const [profit, setProfit] = useState(0);
@@ -37,144 +35,141 @@ function Dashboard() {
         }
     };
 
-   useEffect(() => {
-       if (totalOrderValue !== null) {
-           const calculatedProfit = Math.floor(totalOrderValue * 0.35);
-           setProfit(calculatedProfit);;
-       }
-   }, [totalOrderValue]);
-
- 
-  const fetchNewCustomer = async () => {
-    try {
-      const res = await axios.get(
-        'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
-      );
-      const newCustomerCount = res.data.filter((item) => item.status === 'New').length;
-      
-      setNewCustomer(newCustomerCount)
-    }catch (err) {
-      console.error('Lỗi khi lấy dữ liệu:', err);
-    }
-  }
-
-
-
     useEffect(() => {
-      fetchAndCalculateTotal();
-      fetchNewCustomer();
-    }, []);
-
-    useEffect(() => {
-        fetch('https://67f6518142d6c71cca617d6a.mockapi.io/customer')
-            .then((response) => response.json())
-            .then((d) => {
-                setArray(d);
-                setItemArray(d.slice(0, itemsPerPage));
-                const totalPages = Math.ceil(d.length / itemsPerPage);
-                const pageNumbers = Array.from(
-                    { length: totalPages },
-                    (_, i) => i + 1,
-                );
-                setPage(pageNumbers);
-            });
-    }, []);
-
-    const handlePageClick = (p) => {
-        setCurrentPage(p);
-        const startIndex = (p - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        setItemArray(array.slice(startIndex, endIndex));
-    };
-
-    const handleEdit = (item) => {
-        setSelectedItem(item);
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-
-    const handleSave = async (updatedItem) => {
-        try {
-            const response = await fetch(
-                `https://67f6518142d6c71cca617d6a.mockapi.io/customer/${updatedItem.id}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: updatedItem.name,
-                        avatar: updatedItem.avatar,
-                        company: updatedItem.company,
-                    }),
-                },
-            );
-
-            if (response.ok) {
-                const updated = await response.json();
-
-                // Cập nhật danh sách tổng thể
-                const newArray = array.map((item) =>
-                    item.id === updated.id ? updated : item,
-                );
-
-                setArray(newArray);
-
-                // Cập nhật lại phần hiển thị theo trang hiện tại
-                const startIndex = (currentPage - 1) * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                setItemArray(newArray.slice(startIndex, endIndex));
-
-                // Đóng modal
-                setIsModalOpen(false);
-            } else {
-                console.error('Lỗi khi cập nhật:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Lỗi PUT API:', error);
+        if (totalOrderValue !== null) {
+            const calculatedProfit = Math.floor(totalOrderValue * 0.35);
+            setProfit(calculatedProfit);
         }
-    };
-    const handleAddCustomer = async (newCustomer) => {
+    }, [totalOrderValue]);
+
+    const fetchNewCustomer = async () => {
         try {
-            const response = await fetch(
+            const res = await axios.get(
                 'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newCustomer),
-                },
             );
+            const newCustomerCount = res.data.filter(
+                (item) => item.status === 'New',
+            ).length;
 
-            if (response.ok) {
-                const added = await response.json();
-
-                const newArray = [...array, added];
-                setArray(newArray);
-
-                // Cập nhật lại dữ liệu hiển thị trong trang hiện tại
-                const startIndex = (currentPage - 1) * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                setItemArray(newArray.slice(startIndex, endIndex));
-
-                setIsAddModalOpen(false); // đóng modal sau khi thêm
-            } else {
-                console.error('Lỗi khi thêm khách hàng:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Lỗi POST API:', error);
+            setNewCustomer(newCustomerCount);
+        } catch (err) {
+            console.error('Lỗi khi lấy dữ liệu:', err);
         }
     };
+    useEffect(() => {
+        fetchAndCalculateTotal();
+        fetchNewCustomer();
+    }, []);
+
+    // useEffect(() => {
+    //     fetch('https://67f6518142d6c71cca617d6a.mockapi.io/customer')
+    //         .then((response) => response.json())
+    //         .then((d) => {
+    //             setArray(d);
+    //             setItemArray(d.slice(0, itemsPerPage));
+    //             const totalPages = Math.ceil(d.length / itemsPerPage);
+    //             const pageNumbers = Array.from(
+    //                 { length: totalPages },
+    //                 (_, i) => i + 1,
+    //             );
+    //             setPage(pageNumbers);
+    //         });
+    // }, []);
+
+    // const handlePageClick = (p) => {
+    //     setCurrentPage(p);
+    //     const startIndex = (p - 1) * itemsPerPage;
+    //     const endIndex = startIndex + itemsPerPage;
+    //     setItemArray(array.slice(startIndex, endIndex));
+    // };
+
+    // const handleEdit = (item) => {
+    //     setSelectedItem(item);
+    //     setIsModalOpen(true);
+    // };
+
+    // const handleCloseModal = () => {
+    //     setIsModalOpen(false);
+    // };
+
+    // const handleSave = async (updatedItem) => {
+    //     try {
+    //         const response = await fetch(
+    //             `https://67f6518142d6c71cca617d6a.mockapi.io/customer/${updatedItem.id}`,
+    //             {
+    //                 method: 'PUT',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //                 body: JSON.stringify({
+    //                     name: updatedItem.name,
+    //                     avatar: updatedItem.avatar,
+    //                     company: updatedItem.company,
+    //                 }),
+    //             },
+    //         );
+
+    //         if (response.ok) {
+    //             const updated = await response.json();
+
+    //             // Cập nhật danh sách tổng thể
+    //             const newArray = array.map((item) =>
+    //                 item.id === updated.id ? updated : item,
+    //             );
+
+    //             setArray(newArray);
+
+    //             // Cập nhật lại phần hiển thị theo trang hiện tại
+    //             const startIndex = (currentPage - 1) * itemsPerPage;
+    //             const endIndex = startIndex + itemsPerPage;
+    //             setItemArray(newArray.slice(startIndex, endIndex));
+
+    //             // Đóng modal
+    //             setIsModalOpen(false);
+    //         } else {
+    //             console.error('Lỗi khi cập nhật:', response.statusText);
+    //         }
+    //     } catch (error) {
+    //         console.error('Lỗi PUT API:', error);
+    //     }
+    // };
+    // const handleAddCustomer = async (newCustomer) => {
+    //     try {
+    //         const response = await fetch(
+    //             'https://67f6518142d6c71cca617d6a.mockapi.io/customer',
+    //             {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //                 body: JSON.stringify(newCustomer),
+    //             },
+    //         );
+
+    //         if (response.ok) {
+    //             const added = await response.json();
+
+    //             const newArray = [...array, added];
+    //             setArray(newArray);
+
+    //             // Cập nhật lại dữ liệu hiển thị trong trang hiện tại
+    //             const startIndex = (currentPage - 1) * itemsPerPage;
+    //             const endIndex = startIndex + itemsPerPage;
+    //             setItemArray(newArray.slice(startIndex, endIndex));
+
+    //             setIsAddModalOpen(false); // đóng modal sau khi thêm
+    //         } else {
+    //             console.error('Lỗi khi thêm khách hàng:', response.statusText);
+    //         }
+    //     } catch (error) {
+    //         console.error('Lỗi POST API:', error);
+    //     }
+    // };
 
     return (
         <>
             <div className="grid grid-cols-8 container mx-auto ">
                 <div className="self-start grid col-span-8">
-                    
                     {/* overview & detailed report */}
                     <div className="p-6 mt-2">
                         <div className="flex">
@@ -274,7 +269,8 @@ function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 mt-8">
+
+                        {/* <div className="grid grid-cols-2 mt-8">
                             <div className="flex">
                                 <img
                                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/File_text_1_jwvhth.png"
@@ -411,19 +407,20 @@ function Dashboard() {
                                 </tbody>
                             </table>
                             {/* Gọi Modal */}
-                            <ModelUpdate
+                        {/* <ModelUpdate
                                 isOpen={isModalOpen}
                                 onClose={handleCloseModal}
                                 onSave={handleSave}
                                 item={selectedItem}
-                            />
-                        </div>
+                            /> */}
+                        {/* </div>
+
                         <div className="grid grid-cols-2 mt-5">
                             <p className="text-gray-500">
                                 {array.length} results
                             </p>
                             {/* Pagination */}
-                            <div className="flex justify-end">
+                        {/* <div className="flex justify-end">
                                 {page.map((p) => (
                                     <button
                                         key={p}
@@ -437,8 +434,8 @@ function Dashboard() {
                                         {p}
                                     </button>
                                 ))}
-                            </div>
-                        </div>
+                            </div> */}
+                        {/* </div> */}
                     </div>
                 </div>
             </div>
