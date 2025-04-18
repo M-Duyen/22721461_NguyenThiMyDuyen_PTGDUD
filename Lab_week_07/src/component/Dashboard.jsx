@@ -270,7 +270,7 @@ function Dashboard() {
                             </div>
                         </div>
 
-                        {/* <div className="grid grid-cols-2 mt-8">
+                        <div className="grid grid-cols-2 mt-8">
                             <div className="flex">
                                 <img
                                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/File_text_1_jwvhth.png"
@@ -284,7 +284,7 @@ function Dashboard() {
                             <div className="flex justify-end">
                                 <button
                                     className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2"
-                                    onClick={() => setIsAddModalOpen(true)}
+                                    // onClick={() => setIsAddModalOpen(true)}
                                 >
                                     <img
                                         src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/Download_qoyc0m.png"
@@ -293,11 +293,11 @@ function Dashboard() {
                                     />
                                     <p className="ml-1">Import</p>
                                 </button>
-                                <ModalAddCustomer
+                                {/* <ModalAddCustomer
                                     isOpen={isAddModalOpen}
                                     onClose={() => setIsAddModalOpen(false)}
                                     onAdd={handleAddCustomer}
-                                />
+                                /> */}
 
                                 <button className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2 ml-3">
                                     <img
@@ -329,7 +329,7 @@ function Dashboard() {
                                         <th className="p-3"></th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200">
+                              {/* <tbody className="divide-y divide-gray-200">
                                     {itemArray.length > 0 ? (
                                         itemArray.map((item) => (
                                             <tr
@@ -404,8 +404,9 @@ function Dashboard() {
                                             </td>
                                         </tr>
                                     )}
-                                </tbody>
-                            </table>
+                                </tbody>  */}
+                             </table>
+
                             {/* Gọi Modal */}
                         {/* <ModelUpdate
                                 isOpen={isModalOpen}
@@ -435,7 +436,7 @@ function Dashboard() {
                                     </button>
                                 ))}
                             </div> */}
-                        {/* </div> */}
+                         </div> 
                     </div>
                 </div>
             </div>
