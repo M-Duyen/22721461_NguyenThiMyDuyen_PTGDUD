@@ -93,47 +93,48 @@ function Dashboard() {
         setIsModalOpen(false);
     };
 
-    // const handleSave = async (updatedItem) => {
-    //     try {
-    //         const response = await fetch(
-    //             `https://67f6518142d6c71cca617d6a.mockapi.io/customer/${updatedItem.id}`,
-    //             {
-    //                 method: 'PUT',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //                 body: JSON.stringify({
-    //                     name: updatedItem.name,
-    //                     avatar: updatedItem.avatar,
-    //                     company: updatedItem.company,
-    //                 }),
-    //             },
-    //         );
+    const handleSave = async (updatedItem) => {
+        try {
+            const response = await fetch(
+                `https://67f6518142d6c71cca617d6a.mockapi.io/customer/${updatedItem.id}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: updatedItem.name,
+                        avatar: updatedItem.avatar,
+                        company: updatedItem.company,
+                    }),
+                },
+            );
 
-    //         if (response.ok) {
-    //             const updated = await response.json();
+            if (response.ok) {
+                const updated = await response.json();
 
-    //             // Cập nhật danh sách tổng thể
-    //             const newArray = array.map((item) =>
-    //                 item.id === updated.id ? updated : item,
-    //             );
+                // Cập nhật danh sách tổng thể
+                const newArray = array.map((item) =>
+                    item.id === updated.id ? updated : item,
+                );
 
-    //             setArray(newArray);
+                setArray(newArray);
 
-    //             // Cập nhật lại phần hiển thị theo trang hiện tại
-    //             const startIndex = (currentPage - 1) * itemsPerPage;
-    //             const endIndex = startIndex + itemsPerPage;
-    //             setItemArray(newArray.slice(startIndex, endIndex));
+                // Cập nhật lại phần hiển thị theo trang hiện tại
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                setItemArray(newArray.slice(startIndex, endIndex));
 
-    //             // Đóng modal
-    //             setIsModalOpen(false);
-    //         } else {
-    //             console.error('Lỗi khi cập nhật:', response.statusText);
-    //         }
-    //     } catch (error) {
-    //         console.error('Lỗi PUT API:', error);
-    //     }
-    // };
+                // Đóng modal
+              setIsModalOpen(false);
+              alert('Cập nhật thành công!');
+            } else {
+                console.error('Lỗi khi cập nhật:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Lỗi PUT API:', error);
+        }
+    };
     // const handleAddCustomer = async (newCustomer) => {
     //     try {
     //         const response = await fetch(
@@ -412,7 +413,7 @@ function Dashboard() {
                          <ModelUpdate
                                 isOpen={isModalOpen}
                                 onClose={handleCloseModal}
-                                // onSave={handleSave}
+                                onSave={handleSave}
                                 item={selectedItem}
                             /> 
                         </div>
