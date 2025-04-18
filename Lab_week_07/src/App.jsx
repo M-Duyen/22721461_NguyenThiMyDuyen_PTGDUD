@@ -24,8 +24,8 @@ function AppContent() {
 
 export default function App() {
     return (
-        <>
+        <BrowserRouter>
             <AppContent />
-        </>
+        </BrowserRouter>
     );
 }

@@ -1,62 +1,68 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
+    const linkClass = ({ isActive }) =>
+        `flex items-center p-3 rounded-lg mt-2 transition duration-300 ${
+            isActive
+                ? 'bg-pink-500 text-white'
+                : 'text-gray-500 hover:bg-pink-500 hover:text-white'
+        }`;
+
     return (
-        <div className="border-r border-gray-200 w-72 p-4 bg-white">
+      <div className="border-r border-gray-200 w-72 p-4 bg-white">
             <img
                 src="https://res.cloudinary.com/duongofji/image/upload/v1744188613/Image_1858_frjwpk.png"
                 alt="logo"
                 className="object-contain mb-8"
             />
 
-            <div className="flex items-center ">
+            <NavLink to="/dashboard" className={linkClass}>
                 <img
                     src="https://res.cloudinary.com/duongofji/image/upload/v1744193358/Squares1_p1bgkp.jpg"
                     alt=""
                 />
                 <p className="ml-3">Dashboard</p>
-            </div>
+            </NavLink>
 
-            <div className="flex items-center mt-4">
+            <NavLink to="/projects" className={linkClass}>
                 <img
                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188611/Folder_x3cfac.png"
                     alt=""
                 />
                 <p className="ml-3">Projects</p>
-            </div>
+            </NavLink>
 
-            <div className="flex items-center mt-4">
+            <NavLink to="/teams" className={linkClass}>
                 <img
                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188613/Groups_fwim6e.png"
                     alt=""
                 />
                 <p className="ml-3">Teams</p>
-            </div>
+            </NavLink>
 
-            <div className="flex items-center mt-4">
+            <NavLink to="/analytics" className={linkClass}>
                 <img
                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188612/Pie_chart_glsklk.png"
                     alt=""
                 />
                 <p className="ml-3">Analytics</p>
-            </div>
+            </NavLink>
 
-            <div className="flex items-center mt-4">
+            <NavLink to="/messages" className={linkClass}>
                 <img
                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/Chat_jnllfs.png"
                     alt=""
                 />
                 <p className="ml-3">Message</p>
-            </div>
+            </NavLink>
 
-            <div className="flex items-center mt-4">
+            <NavLink to="/integrations" className={linkClass}>
                 <img
                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/Code_f14bka.png"
                     alt=""
                 />
                 <p className="ml-3">Integrations</p>
-            </div>
+            </NavLink>
 
             <div className="text-center m-5 bg-sky-100 mt-10 p-3 pt-6 rounded-lg">
                 <img
