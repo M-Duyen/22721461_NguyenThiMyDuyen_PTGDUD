@@ -19,7 +19,7 @@ export default function Header() {
                 </div>
                 <img
                     src="https://res.cloudinary.com/duongofji/image/upload/v1744188613/Bell_1_zulk4y.png"
-                    alt="thongbao"
+                    alt="thongBao"
                     className="h-7 mr-3 mt-1"
                 />
                 <img
