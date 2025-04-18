@@ -3,11 +3,11 @@ import axios from 'axios';
 import Header from './Header';
 
 function Dashboard() {
-    // const [array, setArray] = useState([]);
-    // const [itemArray, setItemArray] = useState([]);
-    // const [page, setPage] = useState([]);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const itemsPerPage = 6;
+    const [array, setArray] = useState([]);
+    const [itemArray, setItemArray] = useState([]);
+    const [page, setPage] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
     // const [isModalOpen, setIsModalOpen] = useState(false);
     // const [selectedItem, setSelectedItem] = useState(null);
     // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -61,27 +61,27 @@ function Dashboard() {
         fetchNewCustomer();
     }, []);
 
-    // useEffect(() => {
-    //     fetch('https://67f6518142d6c71cca617d6a.mockapi.io/customer')
-    //         .then((response) => response.json())
-    //         .then((d) => {
-    //             setArray(d);
-    //             setItemArray(d.slice(0, itemsPerPage));
-    //             const totalPages = Math.ceil(d.length / itemsPerPage);
-    //             const pageNumbers = Array.from(
-    //                 { length: totalPages },
-    //                 (_, i) => i + 1,
-    //             );
-    //             setPage(pageNumbers);
-    //         });
-    // }, []);
+    useEffect(() => {
+        fetch('https://67f6518142d6c71cca617d6a.mockapi.io/customer')
+            .then((response) => response.json())
+            .then((d) => {
+                setArray(d);
+                setItemArray(d.slice(0, itemsPerPage));
+                const totalPages = Math.ceil(d.length / itemsPerPage);
+                const pageNumbers = Array.from(
+                    { length: totalPages },
+                    (_, i) => i + 1,
+                );
+                setPage(pageNumbers);
+            });
+    }, []);
 
-    // const handlePageClick = (p) => {
-    //     setCurrentPage(p);
-    //     const startIndex = (p - 1) * itemsPerPage;
-    //     const endIndex = startIndex + itemsPerPage;
-    //     setItemArray(array.slice(startIndex, endIndex));
-    // };
+    const handlePageClick = (p) => {
+        setCurrentPage(p);
+        const startIndex = (p - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setItemArray(array.slice(startIndex, endIndex));
+    };
 
     // const handleEdit = (item) => {
     //     setSelectedItem(item);
@@ -329,7 +329,7 @@ function Dashboard() {
                                         <th className="p-3"></th>
                                     </tr>
                                 </thead>
-                              {/* <tbody className="divide-y divide-gray-200">
+                              <tbody className="divide-y divide-gray-200">
                                     {itemArray.length > 0 ? (
                                         itemArray.map((item) => (
                                             <tr
@@ -381,9 +381,9 @@ function Dashboard() {
                                                 <td className="p-3 text-right">
                                                     <button
                                                         className="text-pink-500 hover:underline"
-                                                        onClick={() =>
-                                                            handleEdit(item)
-                                                        }
+                                                        // onClick={() =>
+                                                        //     handleEdit(item)
+                                                        // }
                                                     >
                                                         <img
                                                             src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/create_qj44ru.png"
@@ -404,7 +404,7 @@ function Dashboard() {
                                             </td>
                                         </tr>
                                     )}
-                                </tbody>  */}
+                                </tbody> 
                              </table>
 
                             {/* Gọi Modal */}
@@ -421,7 +421,7 @@ function Dashboard() {
                                 {array.length} results
                             </p>
                             {/* Pagination */}
-                        {/* <div className="flex justify-end">
+                        <div className="flex justify-end mt-5">
                                 {page.map((p) => (
                                     <button
                                         key={p}
@@ -435,7 +435,7 @@ function Dashboard() {
                                         {p}
                                     </button>
                                 ))}
-                            </div> */}
+                            </div>
                          </div> 
                     </div>
                 </div>
