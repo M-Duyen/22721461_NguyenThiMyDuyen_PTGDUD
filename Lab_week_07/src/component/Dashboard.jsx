@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from './Header';
+import ModelUpdate from './ModelUpdate';
 
 function Dashboard() {
     const [array, setArray] = useState([]);
@@ -8,8 +9,8 @@ function Dashboard() {
     const [page, setPage] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
-    // const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [selectedItem, setSelectedItem] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
     // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     const [totalOrderValue, setTotalOrderValue] = useState(0);
@@ -83,14 +84,14 @@ function Dashboard() {
         setItemArray(array.slice(startIndex, endIndex));
     };
 
-    // const handleEdit = (item) => {
-    //     setSelectedItem(item);
-    //     setIsModalOpen(true);
-    // };
+    const handleEdit = (item) => {
+        setSelectedItem(item);
+        setIsModalOpen(true);
+    };
 
-    // const handleCloseModal = () => {
-    //     setIsModalOpen(false);
-    // };
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
 
     // const handleSave = async (updatedItem) => {
     //     try {
@@ -296,7 +297,7 @@ function Dashboard() {
                                 {/* <ModalAddCustomer
                                     isOpen={isAddModalOpen}
                                     onClose={() => setIsAddModalOpen(false)}
-                                    onAdd={handleAddCustomer}
+                                    // onAdd={handleAddCustomer}
                                 /> */}
 
                                 <button className="flex border border-pink-500 text-pink-500 rounded-lg px-3 py-2 ml-3">
@@ -381,9 +382,9 @@ function Dashboard() {
                                                 <td className="p-3 text-right">
                                                     <button
                                                         className="text-pink-500 hover:underline"
-                                                        // onClick={() =>
-                                                        //     handleEdit(item)
-                                                        // }
+                                                        onClick={() =>
+                                                            handleEdit(item)
+                                                        }
                                                     >
                                                         <img
                                                             src="https://res.cloudinary.com/duongofji/image/upload/v1744188614/create_qj44ru.png"
@@ -408,13 +409,13 @@ function Dashboard() {
                              </table>
 
                             {/* Gọi Modal */}
-                        {/* <ModelUpdate
+                         <ModelUpdate
                                 isOpen={isModalOpen}
                                 onClose={handleCloseModal}
-                                onSave={handleSave}
+                                // onSave={handleSave}
                                 item={selectedItem}
-                            /> */}
-                        {/* </div>
+                            /> 
+                        </div>
 
                         <div className="grid grid-cols-2 mt-5">
                             <p className="text-gray-500">
