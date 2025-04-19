@@ -4,26 +4,57 @@ import Headers from './components/Header';
 import Footer from './components/Footer';
 import { useEffect, useState } from 'react';
 import MenuChange from './components/MenuChange';
-
+import EditorPick from './components/EditorPick';
 function App() {
-    const [users, setUsers] = useState([]);
+    const [thisSummerRecipes, setThisSummerRecipes] = useState([]);
+    const [recipesWithVideos, setRecipesWithVideos] = useState([]);
+    const [editorPick, setEditorPick] = useState([]);
 
     useEffect(() => {
         fetch('https://67cd2e86dd7651e464ed8f72.mockapi.io/ThisSummerRecipes')
             .then((response) => response.json())
             .then((data) => {
-                setUsers(
-                    data.map((user) => ({
+                const firstFourUsers = data.slice(0, 4);
+                const lastFourUsers = data.slice(4, 8);
+
+                setThisSummerRecipes(
+                    firstFourUsers.map((user) => ({
                         id: user.id,
                         name: user.name,
                         image: user.image,
                     })),
-                ); // Đảm bảo dữ liệu hợp lệ
-                setLoading(false);
+                );
+                setRecipesWithVideos(
+                    lastFourUsers.map((user) => ({
+                        id: user.id,
+                        name: user.name,
+                        image: user.image,
+                    })),
+                );
             })
             .catch((error) => {
-                console.error('Error fetching users:', error);
-                setLoading(false);
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+    useEffect(() => {
+        fetch('https://67cd2e86dd7651e464ed8f72.mockapi.io/User')
+            .then((response) => response.json())
+            .then((data) => {
+                const lastFourUsers = data.slice(0, 4);
+
+                setEditorPick(
+                    lastFourUsers.map((editor) => ({
+                        id: editor.id,
+                        name: editor.name,
+                        image: editor.image,
+                        ava: editor.ava,
+                        food_name: editor.food_name,
+                        description: editor.description,
+                    })),
+                );
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
             });
     }, []);
 
@@ -39,9 +70,36 @@ function App() {
                 >
                     <RecipeCard />
                 </div>
-                <MenuChange className="flex-2/3" array={users} />
+                <div>
+                    <h1 className="text-3xl font-bold font-serif mt-[5vw] text-pink-500 ">
+                        This Summer Recipes
+                    </h1>
+                    <p className=" font-serif mt-[1vw] text-gray-500 mb-[2vw]">
+                        We have all your Independence Day sweets covered.
+                    </p>
+                </div>
+                <MenuChange className="flex-2/3" array={thisSummerRecipes} />
+                <div>
+                    <h1 className="text-3xl font-bold font-serif mt-[5vw] text-pink-500 ">
+                        Recipes With Videos
+                    </h1>
+                    <p className=" font-serif mt-[1vw] text-gray-500 mb-[2vw]">
+                        Cooking Up Culinary Creations with Step-by-Step Videos
+                    </p>
+                </div>
+                <MenuChange className="flex-2/3" array={recipesWithVideos} />
+                <div>
+                    <h1 className="text-3xl font-bold font-serif mt-[5vw] text-pink-500 ">
+                        Editor's pick
+                    </h1>
+                    <p className=" font-serif mt-[1vw] text-gray-500 mb-[2vw]">
+                        Curated Culinary Delights: Handpicked Favorites by Our
+                        Expert Editors!
+                    </p>
+                </div>
+                <EditorPick className="flex-2/3 mb-[10vw]" array={editorPick} />
 
-                {/* <Footer /> */}
+                <Footer />
             </div>
         </>
     );

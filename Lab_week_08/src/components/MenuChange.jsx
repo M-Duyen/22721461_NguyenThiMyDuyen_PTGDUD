@@ -11,11 +11,11 @@ export default function ItemsImage({ array }) {
             <div className="flex justify-center flex-wrap gap-6 p-4">
                 {array.map((user, index) => (
                     <div key={index} className="flex flex-col space-y-2 border border-gray-100 p-2 rounded-lg shadow-md h-80">
-                        <img className="items-center w-full"
+                        <img className="items-center w-full rounded-xl"
                             src={user.image}
                             alt={user.name}  // Fixed the typo here
                         />
-                        <div className="flex flex-row space-x-2">
+                        <div className="flex flex-row space-x-2 justify-between items-center">
                             <p className="text-lg font-bold text-gray-700 text-left w-42">{user.name}</p>
                             <img
                                 className="items-right w-10 h-10"
@@ -23,7 +23,7 @@ export default function ItemsImage({ array }) {
                                 alt="Save"  // Fixed the typo here
                             />
                         </div>
-                        <span className="text-sm text-pink-500 bg-pink-100 p-1 rounded-lg w-24 mt-4">
+                        <span className="text-sm text-pink-500 bg-pink-100 p-1 rounded-lg w-24">
                             {Math.floor(Math.random() * 50) + 1} minutes
                         </span>
                     </div>
