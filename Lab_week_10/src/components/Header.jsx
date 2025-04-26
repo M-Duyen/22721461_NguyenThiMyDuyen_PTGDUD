@@ -60,70 +60,9 @@ const Header = () => {
                 </div>
             </div>
 
-            {/* Main navigation */}
-            <div className="main-nav">
-                <div className="container">
-                    <div className="nav-items">
-                        <a href="#" className="home-icon">
-                            <i className="icon-home"></i>
-                        </a>
-                        <div className="dropdown">
-                            <a href="#" className="nav-item">
-                                GIỚI THIỆU <i className="icon-chevron-down"></i>
-                            </a>
-                        </div>
-                        <div className="dropdown">
-                            <a href="#" className="nav-item">
-                                ĐÀO TẠO <i className="icon-chevron-down"></i>
-                            </a>
-                        </div>
-                        <div className="dropdown">
-                            <a href="#" className="nav-item">
-                                TUYỂN SINH <i className="icon-chevron-down"></i>
-                            </a>
-                        </div>
-                        <a href="#" className="nav-item">
-                            NGHIÊN CỨU
-                        </a>
-                        <a href="#" className="nav-item">
-                            SINH VIÊN
-                        </a>
-                        <a href="#" className="nav-item">
-                            GIẢNG VIÊN
-                        </a>
-                        <a href="#" className="nav-item">
-                            VĂN BẰNG
-                        </a>
-                        <div className="search-box">
-                            <input type="text" placeholder="Tìm kiếm" />
-                            <button type="submit">
-                                <i className="icon-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
-            {/* Banner image */}
-            <div className="banner">
-                <div className="banner-content">
-                    <div className="vr-text">
-                        <span className="blue-text">Trải nghiệm</span> KHÔNG
-                        GIAN THỰC TẾ ẢO
-                        <div className="university-vr-name">
-                            ĐẠI HỌC CÔNG NGHIỆP THÀNH PHỐ HỒ CHÍ MINH
-                        </div>
-                    </div>
-                    <div className="qr-section">
-                        <img
-                            src="/qr-code.png"
-                            alt="QR Code"
-                            className="qr-code"
-                        />
-                        <div className="vr-url">HTTPS://VR.IUH.EDU.VN</div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     );
 };
