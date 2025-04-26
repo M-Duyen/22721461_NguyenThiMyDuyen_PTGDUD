@@ -1,1 +1,315 @@
 @import "tailwindcss";
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Top navigation bar */
+.top-nav {
+  background-color: #1e1b4b;
+  color: white;
+  padding: 8px 0;
+}
+
+.top-nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-links,
+.right-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  margin-right: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link i {
+  margin-right: 5px;
+}
+
+.separator {
+  margin: 0 10px;
+  color: white;
+}
+
+.flag-link {
+  margin-left: 10px;
+}
+
+.flag {
+  width: 24px;
+  height: 16px;
+  border: 1px solid #ccc;
+}
+
+/* University info section */
+.university-info {
+  background-color: #c5d5df;
+  padding: 20px 0;
+}
+
+.university-info .container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-section {
+  margin-right: 30px;
+}
+
+.university-logo {
+  width: 180px;
+}
+
+.university-title {
+  text-align: center;
+}
+
+.ministry {
+  margin-left: 250px;
+
+  color: #2c3e7b;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.university-name {
+  margin-left: 250px;
+  color: #2c3e7b;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.university-slogan {
+  margin-left: 250px;
+
+  color: #e63946;
+  font-size: 16px;
+}
+
+/* Main navigation */
+.main-nav {
+  background-color: #e9ecef;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+}
+
+.home-icon {
+  padding: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item {
+  padding: 15px;
+  color: #333;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.icon-chevron-down {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.search-box {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-box button {
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+/* Banner */
+.banner {
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.banner-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left-section,
+.center-section,
+.right-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-section {
+  width: 25%;
+}
+
+.center-section {
+  width: 50%;
+}
+
+.right-section {
+  width: 25%;
+}
+
+.graduate-image img {
+  max-width: 100%;
+}
+
+.admission-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admission-year img,
+.admission-dates img {
+  max-width: 100%;
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.program-item img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.admission-announcement img,
+.masters-programs img,
+.phd-programs img,
+.program-list img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.contact-bar {
+  background-color: #2c3e7b;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.phone-contact,
+.email-contact,
+.website-contact {
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.icon-phone,
+.icon-email {
+  margin-right: 5px;
+}
+
+/* Icons (replace with actual icons) */
+.icon-monitor,
+.icon-mail,
+.icon-book,
+.icon-home,
+.icon-chevron-down,
+.icon-search,
+.icon-phone,
+.icon-email {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  margin-right: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .banner-content {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .center-section,
+  .right-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .university-info .container {
+    flex-direction: column;
+  }
+
+  .logo-section {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .nav-items {
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    width: 100%;
+    margin-top: 10px;
+    order: 1;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+}
+

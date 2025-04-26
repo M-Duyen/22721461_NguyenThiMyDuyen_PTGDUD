@@ -1,114 +1,138 @@
-import React from 'react';
-import coVN from '../assets/coVN.png';
-import coEN from '../assets/co.png';
+import React from 'react'
+import coVN from '../assets/coVN.png'
+import coEN from '../assets/co.png'
+import logoIUH from '../assets/logoIUH.png';
 
 const Header = () => {
     return (
-        <header className="w-full bg-[#1e1b4b] text-white">
-            <div className="container mx-auto px-4 flex items-center justify-between h-12">
-                <div className="flex items-center space-x-6">
-                    <a
-                        href="/e-office"
-                        className="flex items-center space-x-1 text-sm"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <rect
-                                x="2"
-                                y="3"
-                                width="20"
-                                height="14"
-                                rx="2"
-                                ry="2"
-                            ></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                        <span>E-OFFICE</span>
-                    </a>
-
-                    <a
-                        href="/email"
-                        className="flex items-center space-x-1 text-sm"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <span>EMAIL</span>
-                    </a>
-
-                    <a
-                        href="/library"
-                        className="flex items-center space-x-1 text-sm"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                        </svg>
-                        <span>THƯ VIỆN - THÔNG TIN</span>
-                    </a>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2 text-sm">
-                        <a href="/connect">KẾT NỐI</a>
-                        <span>|</span>
-                        <a href="/contact">LIÊN HỆ</a>
+        <div className="header-container">
+            {/* Top navigation bar */}
+            <div className="top-nav">
+                <div className="container">
+                    <div className="left-links">
+                        <a href="#" className="nav-link">
+                            <i className="icon-monitor"></i> E-OFFICE
+                        </a>
+                        <a href="#" className="nav-link">
+                            <i className="icon-mail"></i> EMAIL
+                        </a>
+                        <a href="#" className="nav-link">
+                            <i className="icon-book"></i> THƯ VIỆN - THÔNG TIN
+                        </a>
                     </div>
-
-                    <div className="flex items-center space-x-2">
-                        <a href="/vi" className="block">
+                    <div className="right-links">
+                        <a href="#" className="nav-link">
+                            KẾT NỐI
+                        </a>
+                        <span className="separator">|</span>
+                        <a href="#" className="nav-link">
+                            LIÊN HỆ
+                        </a>
+                        <a href="#" className="flag-link">
                             <img
                                 src={coVN}
-                                alt="Vietnamese flag"
-                                width={30}
-                                height={20}
-                                className="border border-gray-300"
+                                alt="Tiếng Việt"
+                                className="flag"
                             />
                         </a>
-                        <a href="/en" className="block">
+                        <a href="#" className="flag-link">
                             <img
                                 src={coEN}
-                                alt="English flag"
-                                width={30}
-                                height={20}
-                                className="border border-gray-300"
+                                alt="English"
+                                className="flag"
                             />
                         </a>
                     </div>
                 </div>
             </div>
-        </header>
+
+            {/* University info section */}
+            <div className="university-info">
+                <div className="container">
+                    <div className="logo-section">
+                        <img
+                            src={logoIUH}
+                            alt="IUH Logo"
+                            className="university-logo"
+                        />
+                    </div>
+                    <div className="university-title ">
+                        <h2 className="ministry">BỘ CÔNG THƯƠNG</h2>
+                        <h1 className="university-name">
+                            ĐẠI HỌC CÔNG NGHIỆP TP. HỒ CHÍ MINH
+                        </h1>
+                        <p className="university-slogan">
+                            Đổi mới tư duy, làm giàu thêm tri thức - đời sống
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Main navigation */}
+            <div className="main-nav">
+                <div className="container">
+                    <div className="nav-items">
+                        <a href="#" className="home-icon">
+                            <i className="icon-home"></i>
+                        </a>
+                        <div className="dropdown">
+                            <a href="#" className="nav-item">
+                                GIỚI THIỆU <i className="icon-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div className="dropdown">
+                            <a href="#" className="nav-item">
+                                ĐÀO TẠO <i className="icon-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div className="dropdown">
+                            <a href="#" className="nav-item">
+                                TUYỂN SINH <i className="icon-chevron-down"></i>
+                            </a>
+                        </div>
+                        <a href="#" className="nav-item">
+                            NGHIÊN CỨU
+                        </a>
+                        <a href="#" className="nav-item">
+                            SINH VIÊN
+                        </a>
+                        <a href="#" className="nav-item">
+                            GIẢNG VIÊN
+                        </a>
+                        <a href="#" className="nav-item">
+                            VĂN BẰNG
+                        </a>
+                        <div className="search-box">
+                            <input type="text" placeholder="Tìm kiếm" />
+                            <button type="submit">
+                                <i className="icon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Banner image */}
+            <div className="banner">
+                <div className="banner-content">
+                    <div className="vr-text">
+                        <span className="blue-text">Trải nghiệm</span> KHÔNG
+                        GIAN THỰC TẾ ẢO
+                        <div className="university-vr-name">
+                            ĐẠI HỌC CÔNG NGHIỆP THÀNH PHỐ HỒ CHÍ MINH
+                        </div>
+                    </div>
+                    <div className="qr-section">
+                        <img
+                            src="/qr-code.png"
+                            alt="QR Code"
+                            className="qr-code"
+                        />
+                        <div className="vr-url">HTTPS://VR.IUH.EDU.VN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 
