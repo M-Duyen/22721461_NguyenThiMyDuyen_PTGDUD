@@ -1,6 +1,6 @@
-import React from 'react'
-import coVN from '../assets/coVN.png'
-import coEN from '../assets/co.png'
+import React from 'react';
+import coVN from '../assets/coVN.png';
+import coEN from '../assets/co.png';
 import logoIUH from '../assets/logoIUH.png';
 
 const Header = () => {
@@ -29,18 +29,10 @@ const Header = () => {
                             LIÊN HỆ
                         </a>
                         <a href="#" className="flag-link">
-                            <img
-                                src={coVN}
-                                alt="Tiếng Việt"
-                                className="flag"
-                            />
+                            <img src={coVN} alt="Tiếng Việt" className="flag" />
                         </a>
                         <a href="#" className="flag-link">
-                            <img
-                                src={coEN}
-                                alt="English"
-                                className="flag"
-                            />
+                            <img src={coEN} alt="English" className="flag" />
                         </a>
                     </div>
                 </div>
